@@ -82,8 +82,8 @@ D - Delete
 
 /////////////////////////////////////////////////////////////////
 // ACCESS PROPERTIES ON AN OBJECT
-console.log(car.make);
-console.log(car.year);
+// console.log(car.make);
+// console.log(car.year);
 
 /////////////////////////////////////////////////////////////////
 // UPDATE A PROPERTY ON AN OBJECT
@@ -99,7 +99,7 @@ car.trunkSize = 10;
 // DELETE A PROPERTY FROM AN OBJECT
 delete car.trunkSize;
 
-console.log(car);
+// console.log(car);
 
 //////////////////////////////////////////////////////////////////
 
@@ -140,11 +140,11 @@ const me = {
   favColor: 'forest green'
 }
 
-console.log(me.firstName);
-console.log(me.location.city);
-console.log(me.location.city.neighborhood);
-console.log(me.hobbies[1]);
-console.log(me.favColor);
+// console.log(me.firstName);
+// console.log(me.location.city);
+// console.log(me.location.city.neighborhood);
+// console.log(me.hobbies[1]);
+// console.log(me.favColor);
 
 // if (!me.favColor) {
 //   me.favColor = { shade: 'dark', hue: 'green' }
@@ -156,3 +156,85 @@ console.log(me.favColor);
 
 // console.log(me.favColor.shade);
 
+////////////////////////////////////////////////////////////
+// USING METHODS - A method is a function that is a 
+// property of an object
+const student1 = {
+  firstName: 'Simone',
+  lastName: 'Smith',
+  numOfPets: 1,
+  sayHi: function (newName) {
+    if (!newName) {
+      newName = 'friend';
+    }
+
+    console.log(`Hi, ${newName}. My name is ${student1.firstName}`);
+  },
+  talkAboutPets: function () {
+    console.log(`I have ${student1.numOfPets} pet(s)`);
+  },
+  addAPet: function () {
+    student1.numOfPets++;
+    // student1.numOfPets = student1.numOfPets + 1;
+  }
+}
+
+'Hi Jon, my name is Simone';
+'Hi Dorothy, my name is Simone';
+
+student1.sayHi('Jon');
+student1.sayHi();
+student1.talkAboutPets();
+student1.addAPet();
+student1.talkAboutPets();
+
+////////////////////////////////////////////////////////////
+// BANK ACCOUNT EXAMPLE
+
+const jonsAccount = {
+  accountName: 'jon doe',
+  total: 100,
+  depositMoney: function (depositAmount) {
+    jonsAccount.total += depositAmount;
+    // 100            += 5
+  },
+  withdrawalMoney: function (withdrawalAmount) {
+    jonsAccount.total -= withdrawalAmount;
+  },
+  printBalance: function () {
+    console.log(`Your total is: ${jonsAccount.total}`);
+  },
+  sendMoney: function (sendAmount, receiverAccount) {
+    receiverAccount.total += sendAmount;
+    jonsAccount.total -= sendAmount;
+  }
+}
+
+const janesAccount = {
+  accountName: 'jane doe',
+  total: 100,
+  depositMoney: function (depositAmount) {
+    janesAccount.total += depositAmount;
+    // 100            += 5
+  },
+  withdrawalMoney: function (withdrawalAmount) {
+    janesAccount.total -= withdrawalAmount;
+  },
+  printBalance: function () {
+    console.log(`Your total is: ${janesAccount.total}`);
+  },
+  sendMoney: function (sendAmount, receiverAccount) {
+    receiverAccount.total += sendAmount;
+    janesAccount.total -= sendAmount;
+  }
+}
+
+// jonsAccount.printBalance();
+// jonsAccount.depositMoney(100);
+// jonsAccount.printBalance();
+// jonsAccount.withdrawalMoney(50);
+jonsAccount.printBalance();
+jonsAccount.sendMoney(20, janesAccount);
+jonsAccount.printBalance();
+janesAccount.printBalance();
+janesAccount.sendMoney(5, jonsAccount);
